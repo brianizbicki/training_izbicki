@@ -1,0 +1,32 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load library}
+library(readr)
+```
+
+## Intro
+
+*read in data
+*clean data
+
+```{r read in data, message=FALSE}
+bg.chem = read_csv("BGchem2008data.csv")
+```
+
+```{r summary stats}
+mean.temp = mean(bg.chem$CTD_Temperature)
+```
+
+mean temp `r round(mean.temp)`
+
+```{r plot}
+plot(bg.chem$CTD_Depth, bg.chem$CTD_Temperature)
+```
+
