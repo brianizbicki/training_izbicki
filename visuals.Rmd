@@ -43,7 +43,9 @@ head(an.esc)
 ```
 
 ```{r}
-
+ggplot(an.esc, aes(Species, total.count)) +
+  geom_col(fill = "blue") +
+  theme_bw()
 ```
 
 ```{r}
