@@ -1,0 +1,80 @@
+---
+title: "Data cleaning demo"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load packages, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
+library(readr)
+```
+
+read csv from url
+
+```{r}
+catch.raw = read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1")
+```
+
+fix na in Chinook, change chinook to numeric, and select colums we want to use
+
+```{r}
+catch.data = catch.raw %>%
+    mutate(Chinook = ifelse(Chinook == "I", 1, Chinook)) %>%
+  mutate(Chinook = as.numeric(Chinook)) %>%
+  select(-All, -notesRegCode)
+```
+
+Go from wide to long version and back
+
+```{r}
+catch.long = catch.data %>%
+  pivot_longer(cols = -c(Region, Year), names_to = "species", values_to = "catch")
+
+catch.wide = catch.long %>%
+  pivot_wider(names_from = "species", values_from = "catch")
+```
+
+make new column of "catch" times 1000
+
+```{r}
+catch.long = catch.long %>%
+  rename(catch.thousands = catch) %>%
+  mutate(catch = catch.thousands * 1000) %>%
+  select(-catch.thousands)
+```
+
+mean by region
+
+```{r}
+mean.region = catch.long %>%
+  group_by(Region) %>%
+  summarise(catch_mean = mean(catch)) %>%
+  arrange(desc(catch_mean))
+mean.region
+```
+
+filter by region
+
+```{r}
+sse = catch.long %>%
+  filter(Region == "SSE")
+sse
+```
+
+
+```{r}
+region.raw = read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.303.1")
+```
+
+
+
+
+
+
+
+
+
