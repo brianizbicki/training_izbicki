@@ -1,0 +1,47 @@
+---
+title: "functions and packages"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Example without function
+
+```{r}
+airtemps = c(212, 30.3, 78, 32)
+celcius1 = (airtemps[1]-32)*5/9
+celcius2 = (airtemps[2]-32)*5/9
+celcius3 = (airtemps[3]-32)*5/9
+```
+
+
+Create function
+
+```{r}
+far.to.cel = function(far) {
+  celcius = (far-32)*5/9
+  return(celcius)
+}
+```
+
+```{r}
+celcius4 = far.to.cel(airtemps[1])
+celcius4
+
+```
+
+Test funtion
+
+```{r}
+celcius = far.to.cel(airtemps)
+celcius
+```
+
+Document function
+
+```{r}
+
+```
+
