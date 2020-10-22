@@ -5,6 +5,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(roxygen2)
 ```
 
 Example without function
@@ -20,6 +22,10 @@ celcius3 = (airtemps[3]-32)*5/9
 Create function
 
 ```{r}
+#' converts celsius to farenheit
+
+#' this function takes scalar or vector values in degrees celsius and returns values in degrees farenheit
+
 far.to.cel = function(far) {
   celcius = (far-32)*5/9
   return(celcius)
@@ -45,3 +51,21 @@ Document function
 
 ```
 
+celsius to farenheit
+
+```{r}
+airtempsC = c(100, -0.94, 25.2, 0)
+
+```
+
+```{r}
+cel.to.far = function(cel) {
+  farenheit = (cel*9/5) + 32
+  return(farenheit)
+}
+```
+
+```{r}
+farenheit = cel.to.far(airtempsC)
+farenheit
+```

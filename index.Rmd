@@ -11,4 +11,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 I made a webpage baby
 
-Salmon bar plot](visuals.html)
+[Salmon bar plot](visuals.html)
