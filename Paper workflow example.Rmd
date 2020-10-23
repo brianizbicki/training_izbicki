@@ -1,0 +1,48 @@
+---
+title: "Paper workflow example"
+author: ["Brian Izbicki bi67@nau.edu"]
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+library(ggplot2)
+library(knitr)
+library(broom)
+library(captioner)
+library(tibble)
+
+data("diamonds")
+```
+
+```{r}
+ggplot(diamonds, aes(carat, price, color = clarity)) +
+  geom_point()
+```
+
+
+# Abstract
+
+
+
+# Introduction
+
+
+
+
+# Methods
+
+
+
+
+# Results
+```{r}
+mod = lm(price ~ carat, diamonds)
+kable(tidy(mod), digits = 2)
+```
+
+
+
+
+# Discussion
